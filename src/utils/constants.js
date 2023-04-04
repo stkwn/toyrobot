@@ -1,29 +1,29 @@
-export const tableSize = [5, 5];
+export const tableSize = 5;
 export const commandLists = [
   {
     id: 1,
-    name: "place",
+    name: "PLACE",
     params: "x,y,facing",
     desp: "Place the toy robot on the grid location, face the direction provided.",
   },
   {
     id: 2,
-    name: "move",
+    name: "MOVE",
     desp: "Move the robot 1 grid in the direction it is facing.",
   },
   {
     id: 3,
-    name: "left",
+    name: "LEFT",
     desp: "Rotate the robot 90 \u25CB anticlockwise.",
   },
   {
     id: 4,
-    name: "right",
+    name: "RIGHT",
     desp: "Rotate the robot 90 \u25CB",
   },
   {
     id: 5,
-    name: "report",
+    name: "REPORT",
     desp: "Outputs the robots current grid location and facing direction",
   },
 ];
@@ -37,4 +37,5 @@ export const errorMessages = {
   emptyParams: "Should provide correct params",
   noParams: "no params acceptable for this command",
   wrongParams: "wrong command params format",
+  sizeTooBig: "the location is out of the table size",
 };

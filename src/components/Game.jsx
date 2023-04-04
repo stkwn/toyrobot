@@ -1,46 +1,16 @@
 import React, { useState } from "react";
 import {
   tableSize,
-  commandLists,
   facing,
   errorMessages,
 } from "../utils/constants";
-
-const commands = commandLists.map((command) => command.name);
-
-const checkPlaceParams = (param) =>{
-    console.log(param);
-    const location = param.split(',');
-      // param should be 3
-      if (location.length >3) { return {value:true, info: errorMessages.wrongParams}
-      }
-    
-
-
-      //param should be north/west/east/south
-      if (!facing.includes(location[2].toUpperCase())) return {checkResult:false, value:{value:true, info: errorMessages.wrongParams}};
-      ////////////// need to handle " " or ' ';
-
-      //param should be integer
-      if (!Number.isInteger(parseInt(location[0])) || !Number.isInteger(parseInt(location[0]))) {
-        return {checkResult:false, info:{value:true, info: errorMessages.wrongParams} }}
-      //param should be inside the table
-      if (location[0] > tableSize[0] && location[0] < 0) {
-        return {checkResult:false,info:{value:true, info: errorMessages.wrongParams}};
-      } 
-      if (location[1] > tableSize[1] && location[1] < 0) {
-        return {checkResult:false, info:{value:true, info: errorMessages.wrongParams}};
-      } 
-      return{checkResult:true, info:{x:location[0],y:location[1],facing:location[2].toUpperCase()}};
-}
-
+import { checkCommand, checkParams } from "../utils/helpers";
 
 export default function Game() {
   const [robot, setRobot] = useState(null);
   const [error, setError] = useState({});
   const [output, setOutput] = useState('');
   const [commandStr, setCommandStr] = useState("");
- 
 
   const handleChange = (e) => {
     setCommandStr(e.target.value);
@@ -48,42 +18,36 @@ export default function Game() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    setError({value:false, info:""});
 
-    const command = commandStr.substring(0,commandStr.indexOf("("));
+    const {command,param,checkResult} = checkCommand(commandStr);
+    setCommandStr('')
+    if (checkResult.value) {return setError({...checkResult})};
 
-    // if commands not include the comand
-    if (!commands.includes(command)) {
-      return setError({value:true, info: errorMessages.wrongCommands})
-    } 
-    // if commans not include the ()
-    if (commandStr.indexOf("(") ===-1 ||  commandStr.indexOf(")")===-1) {
-      return setError({value:true, info: errorMessages.wrongCommandFormat})
-    } 
-
-    // take the param out
-    const param = commandStr.substring(commandStr.indexOf("(")+1, commandStr.indexOf(')'))
-
-    if (command !== 'place' && param) {setError({value:true, info: errorMessages.noParams})}
-
-    if (!robot && command !=="place")  {
+    if (!robot && command !=="PLACE")  {
       return setError({value:true, info: errorMessages.wrongBegin})
     } 
 
+    if (!robot && command === "PLACE") {
+      const check = checkParams(param);
+      if (!check.checkResult.value) {
+          console.log(check)
+          setRobot({...check.info});
+          setOutput("Success");
+      } else {
+        return setError({value:true, info: errorMessages.wrongBegin})
+      }
+    }
+    
+    setError({value:false, info:""})
 
-    //now we can play the robot;
-    console.log('play the robot');
-    console.log(command);
-    console.log(param);
-
-    switch (command.toUpperCase()) {
+    switch (command) {
       case "PLACE":  {
-        const check = checkPlaceParams(param);
-        if (check.checkResult) {
+        const check = checkParams(param);
+        if (!check.checkResult.value) {
           setRobot(check.info);
           setOutput("Success");
         } else {
-          setError(check.info)
+          setError(check.checkResult)
           setOutput("Failed");
        }
         break;
@@ -96,7 +60,7 @@ export default function Game() {
         let facingIndex = facing.indexOf(robot.facing) - 1;
         if (facingIndex === -1) {facingIndex = facing.length -1};
         setRobot({...robot,facing:facing[facingIndex]})
-                  setOutput("Success");
+        setOutput("Success");
         break;
       };
       case "RIGHT": {
@@ -110,31 +74,33 @@ export default function Game() {
       case "MOVE":{
         let xLocation = robot.x;
         let yLocation = robot.y;
+        setOutput("success");    
         if (robot.facing === 'NORTH') {
           yLocation++;
-          if (yLocation >= tableSize[1]) {yLocation = tableSize[1]-1} 
+          if (yLocation >= tableSize) {
+            yLocation = tableSize-1;
+            setOutput("failed")
+          } 
         }
         if (robot.facing === 'SOUTH') {
           yLocation--;
-          if (yLocation <= 0) {yLocation=0} 
+          if (yLocation <= 0) {yLocation=0;setOutput("failed") } 
         }
         if (robot.facing === 'EAST') {
           xLocation++;
-          if (xLocation >= tableSize[0]) {xLocation = tableSize[0]+1} 
+          if (xLocation >= tableSize) {xLocation = tableSize+1; setOutput("failed")} 
         }
         if (robot.facing === 'WEST') {
           xLocation--;
-          if (xLocation <= 0) {xLocation =0} 
+          if (xLocation <= 0) {xLocation =0; setOutput("failed")} 
         }
         setRobot({...robot, x:xLocation,y:yLocation});  
-        setOutput("success");              
         break;
       }
+
       default:
         break;
     }
-
-    setCommandStr('')
   }
 
   return (

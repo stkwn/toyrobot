@@ -85,7 +85,6 @@ p {
   width: 90vw;
   margin: 0 auto;
   max-width: var(--max-width);
-  /* min-width: var(--max-width); */
 }
 .flex-col {
   display: flex;
@@ -172,14 +171,21 @@ label {
 
 /* TableTopContainer */
 .tableTop_container {
-  width:30%;
-  min-width: 400px;
+  /* width:30%; */
+  width: 95vw;
+  min-width: 360px;
   background-color: var(--clr-blue-dark);
   padding:1rem;
   display: flex;
   flex-wrap: wrap-reverse;
   margin-top:2.5rem
+}
 
+@media screen and (min-width: 360px) {
+  .tableTop_container {
+    min-width: 36rem;
+    width: 30%;
+  }
 }
 
 .square {
@@ -190,7 +196,14 @@ label {
     justify-content: center;
     align-items: center;
     padding:2rem;
-    font-size: 4rem;
+    font-size: 3.5rem;
+}
+
+@media screen and (min-width: 360px) {
+  .tableTop_container {
+    min-width: 36rem;
+    width: 30%;
+  }
 
 }
 .square svg{
@@ -223,26 +236,3 @@ label {
   background-color: var(--clr-yellow-dark)
 }
 
-
-
-/* .tableTop_row {
-  display: flex;
-  
-  
-}
-
-
-.tableTop_box {
-  flex:1;
-}
-
-.tableTop_row:nth-child(odd) .tableTop_box:nth-child(odd),
-.tableTop_row:nth-child(even) .tableTop_box:nth-child(even)
-{
-    background-color: antiquewhite;
-}
-.tableTop_row:nth-child(odd) .tableTop_box:nth-child(even),
-.tableTop_row:nth-child(even) .tableTop_box:nth-child(odd)
-{
-  background-color: lightpink
-} */

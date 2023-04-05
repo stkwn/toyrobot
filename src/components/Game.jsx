@@ -127,10 +127,10 @@ export default function Game() {
           {error.value && <p><strong>Error Message : {error.info}  </strong></p>}
         </div>
         <div className="section-center flex-col">
-          <h1 className="text-center">Onput Window</h1>
-          <button className="btn" onClick={()=>setShowTable(!showTable)}>{showTable ? "Hide PlayBoard": "Show PlayBoard"}</button>
+          <h1 className="text-center">Output Window</h1>
+          <button className="btn mt-s" onClick={()=>setShowTable(!showTable)}>{showTable ? "Hide PlayBoard": "Show PlayBoard"}</button>
           {showTable && <TableTop robot={robot}/>}
-          <h2 className="text-center"> {output}</h2>
+          <h2 className="text-center mt-s"> {output}</h2>
         </div>
       </div>
     </>

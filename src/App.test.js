@@ -1,8 +1,18 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders header", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const headerElement = screen.getByText(/Welcome to Toy Robot Game/i);
+  expect(headerElement).toBeInTheDocument();
+
+  const submitElement = screen.getByRole("button", {
+    name: /SUBMIT COMMANDS/i,
+  });
+  expect(submitElement).toBeInTheDocument();
+
+  const showElement = screen.getByRole("button", {
+    name: /HIDE PLAYBOARD/i,
+  });
+  expect(showElement).toBeInTheDocument();
 });

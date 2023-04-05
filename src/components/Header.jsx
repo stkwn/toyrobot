@@ -1,5 +1,6 @@
 import React from "react";
 import { commandLists, facing } from "../utils/constants";
+import {MdKeyboardDoubleArrowRight} from 'react-icons/md';
 
 export default function Header() {
   return (
@@ -14,7 +15,7 @@ export default function Header() {
               return (
                 <li key={command.id}>
                   <p>
-                    <span>{command.id} -- </span>
+                    <span> <MdKeyboardDoubleArrowRight/>  </span>
                     <strong>
                       {command.name}({command.params ? `${command.params}` : ``}
                       )
@@ -28,10 +29,10 @@ export default function Header() {
           <h4>Tips: </h4>
           <ul>
             <li>
-              Commands is <strong>CASE INSENSITIVE</strong>;{" "}
+              <MdKeyboardDoubleArrowRight/> Commands is <strong>CASE INSENSITIVE</strong>;{" "}
             </li>
-            <li>Invalid commands will be discarded; </li>
-            <li>Facing value :<strong>{facing.map((face, index) => `"${face}",`)}</strong></li>
+            <li><MdKeyboardDoubleArrowRight/> Invalid commands will be discarded; </li>
+            <li><MdKeyboardDoubleArrowRight/> Facing value :<strong>{facing.map((face, index) => `"${face}",`)}</strong></li>
           </ul>
         </div>
       </div>

@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Toy Robot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Getting Started ✨ :sparkles:
 
-## Available Scripts
+## Install dependencies
 
-In the project directory, you can run:
+```bash
+$ npm i
+```
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Start the server
 
-### `npm test`
+Open [http://localhost:3000](http://localhost:3000) with your browser to start play the Robot Game.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can start editing the page by modifying `src/App.js`. The page auto-updates as you edit the file.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$PROJECT_ROOT
+├── public
+├── src
+│   ├── components
+│       ├── Header
+│           # show the commands list and tips about how to play the game.
+│       ├── Game
+│           # the input and output windows
+│       ├── TableTop
+│           # the game playboard.
+│   ├── utils
+│       ├── constants
+│           # define the tablesize, commands, error message, facing direction
+│       ├── helpers
+│           # define functions
+```
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Online Demo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open https://toyrobot.arina-dev.com/ with your browser to play the game online.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![image-20230406073525885](D:\ProjectCode\toyrobot\src\Asset\game.jpg)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Game instruction and tips
 
-### Code Splitting
+#### Game commands
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Five commands
+  -  **PLACE(x,y,facing)** -- The robot will be placed according to x,y and facing the direction provided.
+  -  **MOVE()** -- The robot will move forward one space in the direction it is facing.
+  -  **LEFT()** -- Rotate the robot 90 º anticlockwise.
+  - **RIGHT()** -- Rotate the robot 90 º.
+  -  **REPORT()** -- Outputs the robots current grid location and facing direction
 
-### Analyzing the Bundle Size
+#### Tips
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Begin the game with **PLACE(X,Y,FACING)** command. 
 
-### Making a Progressive Web App
+   - The x,y are integer that relate to location of the playboard. 0,0 on the grid as bottom left.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   - The facing is the direction the robot is facing. Acceptable value: **east, south, west, north**. Double quotes and single quotes around these values are working the same.
 
-### Advanced Configuration
+2. Commands are **case-insensitive**. Move(), move(), MOVE() are treated as equivalent.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. Correct your command easily but the **error message** showed in the command windows. 
 
-### Deployment
+4. The output window will show whether your command  executes successfully or fail. If the robot is on the edge of the playboard, and you still want to move it. Failed will show on the table.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+5. Toggle the button to show / hide the playboard. 
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+<i><b>Enjoy the journey!</b></i>:clap:
+
+
+

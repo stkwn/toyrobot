@@ -44,7 +44,7 @@ $PROJECT_ROOT
 
 Open https://toyrobot.arina-dev.com/ with your browser to play the game online.
 
-![image-20230406073525885](D:\ProjectCode\toyrobot\src\Asset\game.jpg)
+![image-20230406073525885](\Asset\game.jpg)
 
 
 

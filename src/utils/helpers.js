@@ -24,7 +24,6 @@ export const checkParams = (param) => {
     };
 
   const locationTemp = param.split(",").map((item) => item.trim());
-  console.log(locationTemp);
 
   // const regText =`^[0- ${tableSize}],[0-${tableSize}],'[a-zA-Z]+'$``
 

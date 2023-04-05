@@ -32,7 +32,6 @@ export default function Game() {
     if (!robot && command === "PLACE") {
       const check = checkParams(param);
       if (!check.checkResult.value) {
-          console.log(check)
           setRobot({...check.info});
           setOutput("Success");
       } else {
@@ -108,7 +107,7 @@ export default function Game() {
   return (
     <>
       <div className="section section-center flexcontainer ">
-        <div className="section-center">
+        <div className="section-center command_box">
           <h1 className="text-center">Command Window</h1>
           <form onSubmit={handleSubmit}>
             <label htmlFor="commandInput">please input your commands:</label>
@@ -119,17 +118,19 @@ export default function Game() {
               value={commandStr}
               onChange={handleChange}
             ></input>
+            <div className="text-center">
             <button className="btn" type="submit">
               Submit Commands
             </button>
+            </div>
           </form>
           {error.value && <p><strong>Error Message : {error.info}  </strong></p>}
         </div>
         <div className="section-center flex-col">
           <h1 className="text-center">Onput Window</h1>
-          <button className="btn" onClick={()=>setShowTable(!showTable)}>Show Table Top</button>
-          <h2 className="text-center">{output}</h2>
+          <button className="btn" onClick={()=>setShowTable(!showTable)}>{showTable ? "Hide PlayBoard": "Show PlayBoard"}</button>
           {showTable && <TableTop robot={robot}/>}
+          <h2 className="text-center"> {output}</h2>
         </div>
       </div>
     </>

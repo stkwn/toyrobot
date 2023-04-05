@@ -30,7 +30,7 @@ export default function Header() {
             <li>
               Commands is <strong>CASE INSENSITIVE</strong>;{" "}
             </li>
-            <li>Invalid commands will discard; </li>
+            <li>Invalid commands will be discarded; </li>
             <li>Facing value :<strong>{facing.map((face, index) => `"${face}",`)}</strong></li>
           </ul>
         </div>

@@ -85,7 +85,7 @@ export default function Game() {
         }
         if (robot.facing === 'SOUTH') {
           yLocation--;
-          if (yLocation <= 0) {yLocation=0;setOutput("failed") } 
+          if (yLocation < 0) {yLocation=0; setOutput("failed") } 
         }
         if (robot.facing === 'EAST') {
           xLocation++;
@@ -93,7 +93,7 @@ export default function Game() {
         }
         if (robot.facing === 'WEST') {
           xLocation--;
-          if (xLocation <= 0) {xLocation =0; setOutput("failed")} 
+          if (xLocation < 0) {xLocation =0; setOutput("failed")} 
         }
         setRobot({...robot, x:xLocation,y:yLocation});  
         break;

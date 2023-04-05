@@ -5,12 +5,14 @@ import {
   errorMessages,
 } from "../utils/constants";
 import { checkCommand, checkParams } from "../utils/helpers";
+import TableTop from "./TableTop";
 
 export default function Game() {
   const [robot, setRobot] = useState(null);
   const [error, setError] = useState({});
   const [output, setOutput] = useState('');
   const [commandStr, setCommandStr] = useState("");
+  const [showTable, setShowTable] = useState(true)
 
   const handleChange = (e) => {
     setCommandStr(e.target.value);
@@ -123,9 +125,11 @@ export default function Game() {
           </form>
           {error.value && <p><strong>Error Message : {error.info}  </strong></p>}
         </div>
-        <div className="section-center">
+        <div className="section-center flex-col">
           <h1 className="text-center">Onput Window</h1>
+          <button className="btn" onClick={()=>setShowTable(!showTable)}>Show Table Top</button>
           <h2 className="text-center">{output}</h2>
+          {showTable && <TableTop robot={robot}/>}
         </div>
       </div>
     </>

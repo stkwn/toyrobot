@@ -7,6 +7,7 @@
     --clr-grey-dark: hsl(211, 39%, 23%);
     --clr-grey-light: hsl(210, 36%, 96%);
     --clr-yellow-light: hsl(31, 82%, 91%);
+    --clr-yellow-dark: hsl(32, 80%, 68%);
     --transition: all 0.3s linear;
     --spacing: 0.1rem;
     --radius: 0.25rem;
@@ -82,6 +83,13 @@ p {
   width: 90vw;
   margin: 0 auto;
   max-width: var(--max-width);
+  /* min-width: var(--max-width); */
+}
+.flex-col {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 992px) {
@@ -148,3 +156,79 @@ label {
   background-color: transparent;
   margin-bottom: 2rem;
 }
+
+/* TableTopContainer */
+.tableTop_container {
+  width:30%;
+  min-width: 400px;
+  background-color: var(--clr-blue-dark);
+  padding:1rem;
+  display: flex;
+  flex-wrap: wrap-reverse;
+
+}
+
+.square {
+   box-sizing: border-box;
+    width: calc(20%);
+    /* padding-bottom: calc(20%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:2rem;
+    font-size: 4rem;
+
+}
+.square svg{
+  opacity: 0;
+}
+
+.active svg{
+  opacity: 1;
+}
+
+.rotate_east svg{
+  rotate: 90deg;
+}
+.rotate_south svg {
+  rotate: -180deg;
+}
+
+.rotate_west svg {
+  rotate: -90deg;
+}
+
+.rotate_north svg {
+  rotate: 0deg;
+}
+
+.square:nth-child(odd) {
+  background-color: var(--clr-yellow-light)
+}
+.square:nth-child(even) {
+  background-color: var(--clr-yellow-dark)
+}
+
+
+
+/* .tableTop_row {
+  display: flex;
+  
+  
+}
+
+
+.tableTop_box {
+  flex:1;
+}
+
+.tableTop_row:nth-child(odd) .tableTop_box:nth-child(odd),
+.tableTop_row:nth-child(even) .tableTop_box:nth-child(even)
+{
+    background-color: antiquewhite;
+}
+.tableTop_row:nth-child(odd) .tableTop_box:nth-child(even),
+.tableTop_row:nth-child(even) .tableTop_box:nth-child(odd)
+{
+  background-color: lightpink
+} */

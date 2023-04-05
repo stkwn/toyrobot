@@ -89,7 +89,7 @@ export default function Game() {
         }
         if (robot.facing === 'EAST') {
           xLocation++;
-          if (xLocation >= tableSize) {xLocation = tableSize+1; setOutput("failed")} 
+          if (xLocation >= tableSize) {xLocation = tableSize-1; setOutput("failed")} 
         }
         if (robot.facing === 'WEST') {
           xLocation--;

@@ -121,9 +121,7 @@ export default function Game() {
               Submit Commands
             </button>
           </form>
-          <p><strong>Error Message :   </strong>
-          {error && error.info}
-          </p>
+          {error.value && <p><strong>Error Message : {error.info}  </strong></p>}
         </div>
         <div className="section-center">
           <h1 className="text-center">Onput Window</h1>

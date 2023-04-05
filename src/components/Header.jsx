@@ -1,5 +1,5 @@
 import React from "react";
-import { commandLists,facing } from "../utils/constants";
+import { commandLists, facing } from "../utils/constants";
 
 export default function Header() {
   return (
@@ -25,11 +25,14 @@ export default function Header() {
               );
             })}
           </ul>
-          <h4>
-            Tips: Commands is <strong>case insensitive</strong>; Invalid
-            commands will discard; facing value : 
-            {facing.map((face,index) => `"${face}",`)}
-          </h4>
+          <h4>Tips: </h4>
+          <ul>
+            <li>
+              Commands is <strong>CASE INSENSITIVE</strong>;{" "}
+            </li>
+            <li>Invalid commands will discard; </li>
+            <li>Facing value :<strong>{facing.map((face, index) => `"${face}",`)}</strong></li>
+          </ul>
         </div>
       </div>
     </div>

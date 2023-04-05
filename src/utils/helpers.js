@@ -7,6 +7,10 @@ const facingArr = [
   ...facing.map((f) => `"${f}"`),
 ];
 
+const errorGenerator = (error) => {
+  return { value: true, info: errorMessages[error] };
+};
+
 export const checkParams = (param) => {
   const paramsResult = {
     info: {},
@@ -16,7 +20,7 @@ export const checkParams = (param) => {
   if (!param)
     return {
       ...paramsResult,
-      checkResult: { value: true, info: errorMessages.wrongParams },
+      checkResult: errorGenerator("wrongParams"),
     };
 
   const locationTemp = param.split(",").map((item) => item.trim());
@@ -28,7 +32,7 @@ export const checkParams = (param) => {
   if (locationTemp.length > 3)
     return {
       ...paramsResult,
-      checkResult: { value: true, info: errorMessages.wrongParams },
+      checkResult: errorGenerator("wrongParams"),
     };
 
   if (
@@ -37,7 +41,7 @@ export const checkParams = (param) => {
   ) {
     return {
       ...paramsResult,
-      checkResult: { value: true, info: errorMessages.wrongParams },
+      checkResult: errorGenerator("wrongParams"),
     };
   }
   locationTemp[0] = parseInt(locationTemp[0]);
@@ -53,14 +57,14 @@ export const checkParams = (param) => {
   ) {
     return {
       ...paramsResult,
-      checkResult: { value: true, info: errorMessages.sizeTooBig },
+      checkResult: errorGenerator("sizeTooBig"),
     };
   }
 
   if (!facingArr.includes(locationTemp[2]))
     return {
       ...paramsResult,
-      checkResult: { value: true, info: errorMessages.wrongParams },
+      checkResult: errorGenerator("wrongParams"),
     };
 
   if (locationTemp[2].includes(`'`) || locationTemp[2].includes(`"`)) {
@@ -90,7 +94,7 @@ export const checkCommand = (commandStr) => {
   if (commandStr.indexOf("(") === -1 || commandStr.indexOf(")") === -1) {
     return {
       ...commandResult,
-      checkResult: { value: true, info: errorMessages.wrongCommandFormat },
+      checkResult: errorGenerator("wrongCommandFormat"),
     };
   }
 
@@ -103,7 +107,7 @@ export const checkCommand = (commandStr) => {
   if (!commands.includes(command)) {
     return {
       ...commandResult,
-      checkResult: { value: true, info: errorMessages.wrongCommands },
+      checkResult: errorGenerator("wrongCommands"),
     };
   }
   // take the param out
@@ -115,7 +119,7 @@ export const checkCommand = (commandStr) => {
   if (command !== "PLACE" && param) {
     return {
       ...commandResult,
-      checkResult: { value: true, info: errorMessages.noParams },
+      checkResult: errorGenerator("noParams"),
     };
   }
 
